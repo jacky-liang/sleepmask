@@ -3,8 +3,6 @@ Sleep Mask v0.1
 ##What it is:
 A sleep mask with embedded LED and networking capabilities. Goal is to provide the best wake up experience personalized by sleep cycle tracking and smart LED controls.
 
-*Still in prototyping stage.
-
 ##Features:
 * Android app that communicates to the Sleep Mask device via bluetooth.
 * Able to set earliest and latest wake up time alarms.
