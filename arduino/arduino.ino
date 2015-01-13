@@ -48,17 +48,13 @@ int leftLED = 4;
 int rightLED = 3;
 
 //Constants
-int const maxBrightness = 101;//duty cycles
 float const pi = 3.1415926;
-//int const updateWaitPeriod = 1000*60*5; //5 mins in milliseconds
-int const updateWaitPeriod = 5000; //FOR TESTING
 
 //Tracking Data
 int halfPeriod = 0;
 boolean lastIsMin = false;
 int sampleSize = 20;
-//int sampleWait = 1000*2; //2 seconds in milliseconds
-int sampleWait = 100; //FOR TESTING
+int sampleWait = 1000*2; //2 seconds in milliseconds
 //activity amplitudes
 float activities[300];
 //corresponding times of above activities
@@ -76,8 +72,11 @@ int latestWakeTime;
 //time
 int recEarliestTime;
 int recLatestTime;
-//led settings
-int fadeTime = 1;
+
+//Alarm Settings
+int fadeTime = 10;
+int updateWaitPeriod = 1000*60*5; //5 mins in milliseconds
+int maxBrightness = 101;//duty cycles
 
 //Bluetooth
 #define RxD 11
@@ -89,6 +88,9 @@ String message = "";
 int midMsg;
 
 void setup(){
+    
+    /* Uncomment to set time periods suitable for testing */
+    //setTestingEnv();
 
     /* Init Bluetooth */
     BT.begin(9600);
@@ -158,6 +160,14 @@ void setup(){
         Serial.print(devStatus);
         Serial.println(F(")"));
     }
+}
+
+/* Debug */
+
+void setTestingEnv(){
+    fadeTime = 1;
+    sampleWait = 100;
+    updateWaitPeriod = 5000;
 }
 
 void debugState(){
@@ -258,7 +268,7 @@ void loop(){
             }
         }
         delay(100);     
-    }   
+    }
 }
 
 //Helper Functions
